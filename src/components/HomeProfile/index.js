@@ -3,8 +3,6 @@ import { Button } from '@material-ui/core';
 import { HomeStyle } from "./style"
 
 const HomeProfile = ({isAuthenticated, state }) => {
-    
-    console.log(state)
     const history = useHistory()
 
     if(!isAuthenticated) {

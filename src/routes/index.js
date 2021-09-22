@@ -11,7 +11,7 @@ const Routes = () => {
         setIsAuthenticated(false)
     }
 
-    console.log(isAuthenticated)
+
     return(
      <Switch>
          <Route exact path = "/">

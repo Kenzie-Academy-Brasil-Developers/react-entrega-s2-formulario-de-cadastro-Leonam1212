@@ -3,14 +3,12 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useHistory } from "react-router-dom"
-import HomeProfile from "../../routes"
 import { FormContainer } from "./style"
 const FormRegister = ({setIsAuthenticated, setUser}) => {
 
-    const history = useHistory()
+    const history = useHistory();
 
     const schema = yup.object().shape({
-        //validações do form
         name: yup.string().required("Nome é obrigatório").matches(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ  ]+$/, "Este campo deve conter apenas letras"),
         email: yup.string().email("E-mail inválido").required("E-mail é obrigatório"),
         password: yup.string()
@@ -23,17 +21,15 @@ const FormRegister = ({setIsAuthenticated, setUser}) => {
         confirmPassword: yup.string().oneOf([yup.ref("password"), null], "As senhas devem corresponder"),
 
     })
+
     const { register, handleSubmit, formState: {errors} } = useForm({
         resolver: yupResolver(schema)
     })
 
     const onSubmitFunction = (data) => {
-        console.log(data)
             setUser(data)
             setIsAuthenticated(true)
             history.push("/profile")
-
-        
     }
 
     return (
@@ -99,8 +95,6 @@ const FormRegister = ({setIsAuthenticated, setUser}) => {
             </Button>
         </FormContainer>
     )
-
-
 }
 
 export default FormRegister
